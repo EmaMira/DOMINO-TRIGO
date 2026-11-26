@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dominó da Trigonometria — UNIFAP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-blue: #94a8d0;
+      --navy: #3e3d68;
+      --navy-hover: #313054;
+      --white: #ffffff;
+      --light-circle: #cce2ff;
+      --mid-blue: #5c7eb8;
+      --danger: #dc2626;
+      --gold: #facc15;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--bg-blue);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%237c92bd' stroke-width='1.2' opacity='0.55'%3E%3Cpath d='M30 55 L50 15 L70 55 Z'/%3E%3Cellipse cx='50' cy='55' rx='20' ry='6'/%3E%3Cpath d='M120 45 A25 25 0 0 1 170 45 Z'/%3E%3Ccircle cx='215' cy='40' r='20'/%3E%3Cline x1='201' y1='26' x2='229' y2='54'/%3E%3Crect x='25' y='125' width='45' height='25'/%3E%3Cpath d='M25 125 L38 115 L83 115 L70 125 M83 115 L83 140 L70 150'/%3E%3Ctext x='115' y='132' fill='%237c92bd' stroke='none' font-family='sans-serif' font-size='13'%3Esin/cos = tan%3C/text%3E%3Ctext x='190' y='175' fill='%237c92bd' stroke='none' font-family='sans-serif' font-size='14'%3Eπ%3C/text%3E%3Ctext x='35' y='215' fill='%237c92bd' stroke='none' font-family='sans-serif' font-size='12'%3Esen²x + cos²x = 1%3C/text%3E%3Ctext x='165' y='230' fill='%237c92bd' stroke='none' font-family='sans-serif' font-size='12'%3Erad / graus%3C/text%3E%3C/g%3E%3C/svg%3E");
+      color: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 20px 14px;
+    }
+
+    header h1 {
+      color: var(--white);
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 6px rgba(62, 61, 104, 0.15);
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 1120px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .board-card {
+      background: var(--white);
+      width: 100%;
+      min-height: 470px;
+      border-radius: 38px;
+      box-shadow: 0 10px 30px rgba(62, 61, 104, 0.14);
+      padding: 28px 36px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* TELA 1: Configuração da Sala */
+    .setup-grid {
+      display: grid;
+      grid-template-columns
