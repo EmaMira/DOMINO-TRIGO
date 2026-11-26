@@ -68,7 +68,6 @@
       justify-content: center;
     }
 
-    /* TELA 1: Configuração da Sala */
     .setup-grid {
       display: grid;
       grid-template-columns: 300px 1fr;
@@ -122,7 +121,6 @@
     .player-option:hover { background: #eef3fc; }
     .player-option.active { background: var(--navy); color: var(--white); }
 
-    /* TELA 2: Digite seu Nome */
     .name-screen {
       display: flex;
       flex-direction: column;
@@ -189,7 +187,6 @@
 
     .btn-small:disabled { opacity: 0.4; cursor: not-allowed; }
 
-    /* TELA 3: HUD + Mini Placar em Tempo Real */
     .game-hud {
       position: absolute;
       top: 16px;
@@ -279,7 +276,6 @@
       z-index: 5;
     }
 
-    /* Arena do Tabuleiro com Posicionamento Absoluto para a Dobra em L / Serpentina */
     .table-arena {
       position: relative;
       width: 100%;
@@ -288,7 +284,6 @@
       overflow: auto;
     }
 
-    /* Peça na Mesa (Horizontal ou Vertical na Dobra / Bucha) */
     .tile-board {
       position: absolute;
       display: flex;
@@ -345,7 +340,6 @@
       color: var(--navy);
     }
 
-    /* Mão do Jogador */
     .player-dock {
       width: 100%;
       margin-top: 14px;
@@ -413,7 +407,6 @@
       color: var(--navy);
     }
 
-    /* TELA 4: Modal de Vitória + Tabela de Ranking Final */
     .winner-overlay {
       position: absolute;
       inset: 14px auto;
@@ -469,7 +462,6 @@
       color: #fef08a;
     }
 
-    /* Rodapé Institucional UNIFAP */
     footer {
       width: 100%;
       max-width: 1180px;
@@ -519,7 +511,6 @@
   <main class="main-container">
     <section class="board-card">
 
-      <!-- ETAPA 1: Configuração da Sala -->
       <div id="screenSetup" class="setup-grid">
         <div style="display:flex; flex-direction:column; gap:44px;">
           <button type="button" class="btn-navy" style="cursor:default;">QUANTIDADE DE JOGADORES</button>
@@ -534,7 +525,6 @@
         </div>
       </div>
 
-      <!-- ETAPA 2: Digite seu Nome -->
       <div id="screenName" class="name-screen hidden">
         <div class="name-box">
           <label for="playerNameInput">DIGITE SEU NOME:</label>
@@ -549,7 +539,6 @@
         <button type="button" id="btnEnterGame" class="btn-navy" style="max-width:260px;">ENTRAR NA PARTIDA</button>
       </div>
 
-      <!-- ETAPA 3: Tabuleiro Ativo com Dobra do Dominó -->
       <div id="screenGame" class="hidden" style="width:100%;">
         <div class="game-hud">
           <div class="hud-group">
@@ -568,11 +557,9 @@
         <div class="live-ranking-bar" id="liveRankingBar"></div>
         <div id="feedbackToast" class="feedback-toast hidden"></div>
 
-        <!-- Arena onde o dominó faz a dobra em L / serpentina -->
         <div class="table-arena" id="tableArena"></div>
       </div>
 
-      <!-- ETAPA 4: Modal de Vitória + Ranking Final -->
       <div id="winnerModal" class="winner-overlay hidden">
         <h2 id="winnerText">JOGADOR GANHOU!!!!</h2>
 
@@ -595,7 +582,6 @@
 
     </section>
 
-    <!-- Peças na Mão do Jogador -->
     <section id="playerDock" class="player-dock hidden">
       <div class="action-controls">
         <button type="button" id="btnPlayLeft" class="btn-small" disabled>Encaixar na Esquerda</button>
@@ -606,7 +592,6 @@
     </section>
   </main>
 
-  <!-- Rodapé Institucional UNIFAP -->
   <footer>
     <div class="unifap-brand">
       <svg width="54" height="54" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
@@ -647,7 +632,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
     import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
-    // SUBSTITUA PELAS SUAS CHAVES DO PROJETO domino-trigonometria
     const firebaseConfig = {
       apiKey: "SUA_API_KEY",
       authDomain: "domino-trigonometria.firebaseapp.com",
@@ -738,7 +722,6 @@
       const snap = await get(roomRef);
 
       if (!snap.exists()) {
-        // Inicia preferencialmente com a peça dupla (csc(x) | 1/sen(x)) na mesa como na imagem 5
         const doubleIdx = FULL_DECK.findIndex(t => t.leftKey === t.rightKey);
         const startTile = doubleIdx !== -1 ? FULL_DECK[doubleIdx] : FULL_DECK[0];
         const rest = FULL_DECK.filter((_, idx) => idx !== (doubleIdx !== -1 ? doubleIdx : 0));
@@ -863,12 +846,6 @@
         });
     }
 
-    /**
-     * Renderiza a cadeia do dominó com DOBRA EM L / SERPENTINA
-     * - Peças duplas (leftKey === rightKey) ficam na vertical atravessadas na linha
-     * - Ao atingir a borda direita da mesa, o caminho dobra 90° para baixo na vertical
-     *   e depois segue para a esquerda (serpentina), garantindo que nunca corte peças.
-     */
     function renderSnakeBoard(board) {
       const arena = document.getElementById("tableArena");
       arena.innerHTML = "";
@@ -881,7 +858,7 @@
 
       let cursorX = 36;
       let cursorY = 48;
-      let direction = "RIGHT"; // 'RIGHT' | 'DOWN_RIGHT' | 'LEFT' | 'DOWN_LEFT'
+      let direction = "RIGHT";
       let verticalSteps = 0;
       let maxBottom = 260;
 
@@ -907,11 +884,9 @@
             cursorX += LONG + GAP;
           }
 
-          // Se chegou perto da borda direita, dobra para baixo!
           if (cursorX + LONG + SHORT > arenaWidth - 28) {
             direction = "DOWN_RIGHT";
             verticalSteps = 0;
-            // Alinha a dobra logo abaixo da última peça horizontal
             cursorX = cursorX - SHORT - GAP;
             cursorY = cursorY + SHORT + GAP;
           }
@@ -922,14 +897,12 @@
           cursorY += LONG + GAP;
           verticalSteps++;
 
-          // Após 2 peças descendo na dobra, vira para a esquerda
           if (verticalSteps >= 2) {
             direction = "LEFT";
             cursorX = cursorX - LONG - GAP;
             cursorY = cursorY - SHORT - GAP;
           }
         } else if (direction === "LEFT") {
-          // Na volta para a esquerda, inverte visualmente os lados para o encaixe encostar certo
           topText = tile.rightLabel;
           bottomText = tile.leftLabel;
 
@@ -945,7 +918,6 @@
             cursorX -= LONG + GAP;
           }
 
-          // Se chegou perto da borda esquerda, dobra para baixo novamente!
           if (cursorX < 28) {
             direction = "DOWN_LEFT";
             verticalSteps = 0;
@@ -1011,7 +983,6 @@
         toastEl.classList.add("hidden");
       }
 
-      // Renderiza o dominó com dobra
       renderSnakeBoard(board);
 
       const myHand = players[mySlot]?.hand || [];
@@ -1057,7 +1028,6 @@
       }
     }
 
-    // Recalcula a dobra automaticamente se redimensionar a janela
     window.addEventListener("resize", () => {
       if (roomData && roomData.board) renderSnakeBoard(roomData.board);
     });
