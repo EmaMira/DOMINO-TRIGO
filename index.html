@@ -71,4 +71,1129 @@
     /* TELA 1: Configuração da Sala */
     .setup-grid {
       display: grid;
-      grid-template-columns
+      grid-template-columns: 300px 1fr;
+      gap: 48px;
+      align-items: start;
+      max-width: 720px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 16px;
+      padding: 20px 24px;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.15s, background 0.2s;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(62, 61, 104, 0.2);
+    }
+
+    .btn-navy:hover:not(:disabled) {
+      background: var(--navy-hover);
+      transform: translateY(-2px);
+    }
+
+    .player-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 4px;
+    }
+
+    .player-option {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 10px;
+      transition: all 0.15s;
+      width: fit-content;
+    }
+
+    .player-option:hover { background: #eef3fc; }
+    .player-option.active { background: var(--navy); color: var(--white); }
+
+    /* TELA 2: Digite seu Nome */
+    .name-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .name-box {
+      background: var(--navy);
+      color: var(--white);
+      width: 100%;
+      border-radius: 18px;
+      padding: 22px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .name-box label { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px; }
+
+    .name-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: none;
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--navy);
+      outline: none;
+    }
+
+    .invite-bar {
+      background: #eef3fc;
+      border: 2px dashed var(--navy);
+      border-radius: 14px;
+      padding: 12px 18px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .btn-small {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+    }
+
+    .btn-small:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* TELA 3: HUD + Mini Placar em Tempo Real */
+    .game-hud {
+      position: absolute;
+      top: 16px;
+      left: 28px;
+      right: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      z-index: 5;
+    }
+
+    .hud-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .hud-pill {
+      background: #eef3fc;
+      padding: 5px 13px;
+      border-radius: 999px;
+      border: 1px solid #cbd7ee;
+      color: var(--navy);
+    }
+
+    .hud-pill.turn {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .hud-pill.timer-warn {
+      background: var(--danger);
+      color: var(--white);
+      border-color: var(--danger);
+      animation: pulse 0.8s infinite alternate;
+    }
+
+    .live-ranking-bar {
+      margin: 34px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      z-index: 5;
+    }
+
+    .rank-chip {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 4px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .rank-chip.leader {
+      background: #fef9c3;
+      border-color: #eab308;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    .feedback-toast {
+      margin: 6px auto 0;
+      padding: 5px 16px;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-align: center;
+      background: #fef2f2;
+      color: var(--danger);
+      border: 1px solid #fecaca;
+      max-width: 680px;
+      z-index: 5;
+    }
+
+    /* Arena do Tabuleiro com Posicionamento Absoluto para a Dobra em L / Serpentina */
+    .table-arena {
+      position: relative;
+      width: 100%;
+      height: 330px;
+      margin-top: 12px;
+      overflow: auto;
+    }
+
+    /* Peça na Mesa (Horizontal ou Vertical na Dobra / Bucha) */
+    .tile-board {
+      position: absolute;
+      display: flex;
+      border: 3px solid #111827;
+      border-radius: 10px;
+      background: var(--white);
+      overflow: hidden;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+      transition: all 0.25s ease;
+    }
+
+    .tile-board.horizontal {
+      flex-direction: row;
+      width: 132px;
+      height: 62px;
+    }
+
+    .tile-board.vertical {
+      flex-direction: column;
+      width: 62px;
+      height: 132px;
+    }
+
+    .tile-board .half {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.84rem;
+      padding: 3px;
+      text-align: center;
+      color: #111827;
+      line-height: 1.1;
+    }
+
+    .tile-board.horizontal .half:first-child {
+      border-right: 2.5px solid #111827;
+      background: #ffffff;
+    }
+
+    .tile-board.horizontal .half:last-child {
+      background: #eaf1fb;
+      color: var(--navy);
+    }
+
+    .tile-board.vertical .half:first-child {
+      border-bottom: 2.5px solid #111827;
+      background: #ffffff;
+    }
+
+    .tile-board.vertical .half:last-child {
+      background: #eaf1fb;
+      color: var(--navy);
+    }
+
+    /* Mão do Jogador */
+    .player-dock {
+      width: 100%;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .action-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hand-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .tile-hand {
+      width: 62px;
+      height: 114px;
+      border: 3px solid #111827;
+      border-radius: 12px;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    }
+
+    .tile-hand:hover { transform: translateY(-6px); }
+
+    .tile-hand.selected {
+      transform: translateY(-10px);
+      border-color: var(--navy);
+      box-shadow: 0 0 0 4px var(--gold);
+    }
+
+    .tile-hand .half {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 4px;
+      text-align: center;
+      color: #111827;
+    }
+
+    .tile-hand .half:first-child {
+      border-bottom: 2.5px solid #111827;
+      background: #ffffff;
+    }
+
+    .tile-hand .half:last-child {
+      background: #eaf1fb;
+      color: var(--navy);
+    }
+
+    /* TELA 4: Modal de Vitória + Tabela de Ranking Final */
+    .winner-overlay {
+      position: absolute;
+      inset: 14px auto;
+      width: min(740px, 94%);
+      min-height: 430px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      z-index: 20;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      text-align: center;
+      padding: 26px 28px;
+    }
+
+    .winner-overlay h2 {
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: 0.8px;
+    }
+
+    .ranking-table {
+      width: 100%;
+      max-width: 580px;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      font-size: 0.92rem;
+    }
+
+    .ranking-table th {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 10px 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+    }
+
+    .ranking-table td {
+      padding: 10px 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      font-weight: 700;
+    }
+
+    .ranking-table tr.first-place {
+      background: rgba(250, 204, 21, 0.22);
+      color: #fef08a;
+    }
+
+    /* Rodapé Institucional UNIFAP */
+    footer {
+      width: 100%;
+      max-width: 1180px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--white);
+      flex-wrap: wrap;
+    }
+
+    .unifap-brand { display: flex; align-items: center; gap: 12px; }
+
+    .unifap-text {
+      border-left: 2px solid rgba(255, 255, 255, 0.8);
+      padding-left: 12px;
+      line-height: 1.15;
+    }
+
+    .unifap-text .uni { font-size: 0.95rem; font-weight: 600; }
+    .unifap-text .course { font-size: 1.05rem; font-weight: 800; }
+
+    .credits {
+      flex: 1;
+      text-align: center;
+      font-size: 0.76rem;
+      line-height: 1.4;
+      opacity: 0.95;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 768px) {
+      .setup-grid { grid-template-columns: 1fr; gap: 24px; }
+      .board-card { padding: 24px 16px; border-radius: 26px; min-height: 400px; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Dominó da Trigonometria</h1>
+  </header>
+
+  <main class="main-container">
+    <section class="board-card">
+
+      <!-- ETAPA 1: Configuração da Sala -->
+      <div id="screenSetup" class="setup-grid">
+        <div style="display:flex; flex-direction:column; gap:44px;">
+          <button type="button" class="btn-navy" style="cursor:default;">QUANTIDADE DE JOGADORES</button>
+          <button type="button" id="btnCreateRoom" class="btn-navy">CRIAR NOVA SALA</button>
+        </div>
+
+        <div class="player-options" id="playerCountList">
+          <div class="player-option" data-count="1">01 jogador</div>
+          <div class="player-option active" data-count="2">02 jogador</div>
+          <div class="player-option" data-count="3">03 jogador</div>
+          <div class="player-option" data-count="4">04 jogador</div>
+        </div>
+      </div>
+
+      <!-- ETAPA 2: Digite seu Nome -->
+      <div id="screenName" class="name-screen hidden">
+        <div class="name-box">
+          <label for="playerNameInput">DIGITE SEU NOME:</label>
+          <input type="text" id="playerNameInput" placeholder="Ex.: Ema Miranda" maxlength="20" />
+        </div>
+
+        <div id="inviteContainer" class="invite-bar hidden">
+          <span id="inviteText">Link de convite pronto!</span>
+          <button type="button" id="btnCopyLink" class="btn-small">Copiar Link</button>
+        </div>
+
+        <button type="button" id="btnEnterGame" class="btn-navy" style="max-width:260px;">ENTRAR NA PARTIDA</button>
+      </div>
+
+      <!-- ETAPA 3: Tabuleiro Ativo com Dobra do Dominó -->
+      <div id="screenGame" class="hidden" style="width:100%;">
+        <div class="game-hud">
+          <div class="hud-group">
+            <div class="hud-pill" id="hudPlayers">Jogadores: 0/2</div>
+            <div class="hud-pill" id="hudRoom">Sala: ----</div>
+          </div>
+
+          <div class="hud-pill turn" id="hudTurn">Aguardando jogadores...</div>
+
+          <div class="hud-group">
+            <div class="hud-pill" id="hudChances">Chances: ❤️❤️❤️</div>
+            <div class="hud-pill" id="hudTimer">⏱️ 45s</div>
+          </div>
+        </div>
+
+        <div class="live-ranking-bar" id="liveRankingBar"></div>
+        <div id="feedbackToast" class="feedback-toast hidden"></div>
+
+        <!-- Arena onde o dominó faz a dobra em L / serpentina -->
+        <div class="table-arena" id="tableArena"></div>
+      </div>
+
+      <!-- ETAPA 4: Modal de Vitória + Ranking Final -->
+      <div id="winnerModal" class="winner-overlay hidden">
+        <h2 id="winnerText">JOGADOR GANHOU!!!!</h2>
+
+        <table class="ranking-table">
+          <thead>
+            <tr>
+              <th>Posição</th>
+              <th>Jogador</th>
+              <th>Pontos</th>
+              <th>Acertos</th>
+              <th>Erros</th>
+              <th>Restantes</th>
+            </tr>
+          </thead>
+          <tbody id="rankingBody"></tbody>
+        </table>
+
+        <button type="button" class="btn-small" style="background:#fff; color:var(--navy); padding:12px 24px; font-size:0.98rem;" onclick="window.location.href = window.location.pathname">JOGAR NOVAMENTE</button>
+      </div>
+
+    </section>
+
+    <!-- Peças na Mão do Jogador -->
+    <section id="playerDock" class="player-dock hidden">
+      <div class="action-controls">
+        <button type="button" id="btnPlayLeft" class="btn-small" disabled>Encaixar na Esquerda</button>
+        <button type="button" id="btnPlayRight" class="btn-small" disabled>Encaixar na Direita</button>
+        <button type="button" id="btnPassTurn" class="btn-small" style="background:#64748b;" disabled>Passar Vez</button>
+      </div>
+      <div class="hand-row" id="handRow"></div>
+    </section>
+  </main>
+
+  <!-- Rodapé Institucional UNIFAP -->
+  <footer>
+    <div class="unifap-brand">
+      <svg width="54" height="54" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="56" fill="#cce2ff" />
+        <rect x="30" y="28" width="52" height="64" rx="16" fill="#5c7eb8" />
+        <g stroke="#3e3d68" stroke-width="3.5" stroke-linecap="round">
+          <line x1="44" y1="21" x2="44" y2="28" /><line x1="51" y1="21" x2="51" y2="28" />
+          <line x1="58" y1="21" x2="58" y2="28" /><line x1="65" y1="21" x2="65" y2="28" />
+          <line x1="44" y1="92" x2="44" y2="99" /><line x1="51" y1="92" x2="51" y2="99" />
+          <line x1="58" y1="92" x2="58" y2="99" /><line x1="65" y1="92" x2="65" y2="99" />
+          <line x1="23" y1="46" x2="30" y2="46" /><line x1="23" y1="54" x2="30" y2="54" />
+          <line x1="23" y1="62" x2="30" y2="62" /><line x1="23" y1="70" x2="30" y2="70" />
+        </g>
+        <circle cx="58" cy="60" r="20" fill="#cce2ff" />
+        <path d="M72 48 A18 18 0 1 0 72 72" fill="none" stroke="#3e3d68" stroke-width="7" stroke-linecap="round" />
+        <polyline points="72,52 88,52 94,45" fill="none" stroke="#3e3d68" stroke-width="3.5" />
+        <circle cx="96" cy="44" r="4" fill="#3e3d68" />
+        <line x1="58" y1="60" x2="96" y2="60" stroke="#5c7eb8" stroke-width="3.5" />
+        <circle cx="58" cy="60" r="4.5" fill="#5c7eb8" />
+        <circle cx="96" cy="60" r="4" fill="#5c7eb8" />
+        <polyline points="72,68 88,68 94,75" fill="none" stroke="#3e3d68" stroke-width="3.5" />
+        <circle cx="96" cy="76" r="4" fill="#3e3d68" />
+      </svg>
+      <div class="unifap-text">
+        <div class="uni">UNIFAP</div>
+        <div class="course">CIÊNCIA DA<br>COMPUTAÇÃO</div>
+      </div>
+    </div>
+
+    <div class="credits">
+      <div>UNIFAP • Curso de Ciência da Computação • Acadêmica: Ema Miranda</div>
+      <div>Portal institucional: www2.unifap.br/ccomputacao/</div>
+      <div>Domino de Trigonometria. Desenvolvido como ferramenta pedagógica, ainda em fase de teste. Proibido o uso comercial ou lucrativo sem autorização expressa. Protegido pelas Leis Brasileiras nº 9.609/98 e nº 9.610/98, Art. 184 do Código Penal e Tratados Internacionais (Convenção de Berna e TRIPS).</div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+    import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+
+    // SUBSTITUA PELAS SUAS CHAVES DO PROJETO domino-trigonometria
+    const firebaseConfig = {
+      apiKey: "SUA_API_KEY",
+      authDomain: "domino-trigonometria.firebaseapp.com",
+      databaseURL: "https://domino-trigonometria-default-rtdb.firebaseio.com",
+      projectId: "domino-trigonometria",
+      storageBucket: "domino-trigonometria.firebasestorage.app",
+      messagingSenderId: "SEU_SENDER_ID",
+      appId: "SEU_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const TURN_DURATION = 45;
+    const MAX_CHANCES = 3;
+
+    const FULL_DECK = [
+      { leftLabel: "csc(x)",        leftKey: "csc",    rightLabel: "1/sen(x)",      rightKey: "csc" },
+      { leftLabel: "1/sen(x)",      leftKey: "csc",    rightLabel: "π/6 rad",       rightKey: "30deg" },
+      { leftLabel: "30°",           leftKey: "30deg",  rightLabel: "sen(30°)",      rightKey: "1/2" },
+      { leftLabel: "1/2",           leftKey: "1/2",    rightLabel: "cos(30°)",      rightKey: "r3/2" },
+      { leftLabel: "√3/2",          leftKey: "r3/2",   rightLabel: "tg(30°)",       rightKey: "r3/3" },
+      { leftLabel: "√3/3",          leftKey: "r3/3",   rightLabel: "sen²x + cos²x", rightKey: "1" },
+      { leftLabel: "1",             leftKey: "1",      rightLabel: "cos(180°)",     rightKey: "-1" },
+      { leftLabel: "-1",            leftKey: "-1",     rightLabel: "sen(180°)",     rightKey: "0" },
+      { leftLabel: "0",             leftKey: "0",      rightLabel: "π/4 rad",       rightKey: "45deg" },
+      { leftLabel: "45°",           leftKey: "45deg",  rightLabel: "cos(45°)",      rightKey: "r2/2" },
+      { leftLabel: "√2/2",          leftKey: "r2/2",   rightLabel: "cos(135°)",     rightKey: "-r2/2" },
+      { leftLabel: "-√2/2",         leftKey: "-r2/2",  rightLabel: "2π/3 rad",      rightKey: "120deg" },
+      { leftLabel: "120°",          leftKey: "120deg", rightLabel: "cos(120°)",     rightKey: "-1/2" },
+      { leftLabel: "-1/2",          leftKey: "-1/2",   rightLabel: "sen(240°)",     rightKey: "-r3/2" },
+      { leftLabel: "-√3/2",         leftKey: "-r3/2",  rightLabel: "tg(150°)",      rightKey: "-r3/3" },
+      { leftLabel: "-√3/3",         leftKey: "-r3/3",  rightLabel: "tg(60°)",       rightKey: "r3" },
+      { leftLabel: "√3",            leftKey: "r3",     rightLabel: "tg(120°)",      rightKey: "-r3" },
+      { leftLabel: "-√3",           leftKey: "-r3",    rightLabel: "3π/2 rad",      rightKey: "270deg" },
+      { leftLabel: "270°",          leftKey: "270deg", rightLabel: "2·sen(90°)",    rightKey: "2" },
+      { leftLabel: "2",             leftKey: "2",      rightLabel: "sen270°-cos0°", rightKey: "-2" },
+      { leftLabel: "-2",            leftKey: "-2",     rightLabel: "5π/6 rad",      rightKey: "150deg" },
+      { leftLabel: "150°",          leftKey: "150deg", rightLabel: "5π/4 rad",      rightKey: "225deg" },
+      { leftLabel: "225°",          leftKey: "225deg", rightLabel: "5π/3 rad",      rightKey: "300deg" },
+      { leftLabel: "300°",          leftKey: "300deg", rightLabel: "11π/6 rad",     rightKey: "330deg" },
+      { leftLabel: "330°",          leftKey: "330deg", rightLabel: "sen(x)/cos(x)", rightKey: "tg" },
+      { leftLabel: "tg(x)",         leftKey: "tg",     rightLabel: "cos(x)/sen(x)", rightKey: "cotg" },
+      { leftLabel: "cotg(x)",       leftKey: "cotg",   rightLabel: "1 + tg²(x)",    rightKey: "sec2" },
+      { leftLabel: "sec²(x)",       leftKey: "sec2",   rightLabel: "1/sen(x)",      rightKey: "csc" }
+    ];
+
+    let maxPlayers = 2;
+    let roomId = new URLSearchParams(window.location.search).get("sala");
+    let mySlot = null;
+    let selectedTileIdx = null;
+    let roomData = null;
+    let timerInterval = null;
+
+    document.querySelectorAll(".player-option").forEach(opt => {
+      opt.onclick = () => {
+        document.querySelectorAll(".player-option").forEach(o => o.classList.remove("active"));
+        opt.classList.add("active");
+        maxPlayers = Number(opt.dataset.count);
+      };
+    });
+
+    if (roomId) {
+      document.getElementById("screenSetup").classList.add("hidden");
+      document.getElementById("screenName").classList.remove("hidden");
+    }
+
+    document.getElementById("btnCreateRoom").onclick = () => {
+      roomId = Math.random().toString(36).substring(2, 7).toUpperCase();
+      window.history.replaceState({}, "", `?sala=${roomId}`);
+      document.getElementById("screenSetup").classList.add("hidden");
+      document.getElementById("screenName").classList.remove("hidden");
+
+      if (maxPlayers > 1) {
+        const inviteUrl = window.location.href;
+        document.getElementById("inviteContainer").classList.remove("hidden");
+        document.getElementById("inviteText").innerText = `Sala ${roomId} (${maxPlayers} jogadores)`;
+        document.getElementById("btnCopyLink").onclick = () => {
+          navigator.clipboard.writeText(inviteUrl);
+          alert("Link de convite copiado! Envie para os outros jogadores.");
+        };
+      }
+    };
+
+    document.getElementById("btnEnterGame").onclick = async () => {
+      const playerName = document.getElementById("playerNameInput").value.trim() || "Jogador";
+      const roomRef = ref(db, `salas/${roomId}`);
+      const snap = await get(roomRef);
+
+      if (!snap.exists()) {
+        // Inicia preferencialmente com a peça dupla (csc(x) | 1/sen(x)) na mesa como na imagem 5
+        const doubleIdx = FULL_DECK.findIndex(t => t.leftKey === t.rightKey);
+        const startTile = doubleIdx !== -1 ? FULL_DECK[doubleIdx] : FULL_DECK[0];
+        const rest = FULL_DECK.filter((_, idx) => idx !== (doubleIdx !== -1 ? doubleIdx : 0));
+        const shuffled = rest.sort(() => Math.random() - 0.5);
+
+        const totalSeats = maxPlayers === 1 ? 2 : maxPlayers;
+        const perPlayer = Math.floor(shuffled.length / totalSeats);
+
+        const players = [];
+        for (let i = 0; i < totalSeats; i++) {
+          players.push({
+            name: i === 0 ? playerName : (maxPlayers === 1 ? "Computador (Bot)" : ""),
+            joined: i === 0 || maxPlayers === 1,
+            hand: shuffled.slice(i * perPlayer, (i + 1) * perPlayer),
+            score: 0,
+            hits: 0,
+            errors: 0
+          });
+        }
+
+        mySlot = 0;
+        await set(roomRef, {
+          maxPlayers: totalSeats,
+          isSolo: maxPlayers === 1,
+          board: [startTile],
+          players,
+          turn: 0,
+          chancesLeft: MAX_CHANCES,
+          turnDeadline: Date.now() + TURN_DURATION * 1000,
+          lastAlert: "",
+          winner: null
+        });
+      } else {
+        const data = snap.val();
+        const freeIndex = data.players.findIndex(p => !p.joined);
+        if (freeIndex === -1) {
+          alert("Esta sala já está cheia!");
+          return;
+        }
+        mySlot = freeIndex;
+        const updates = {
+          [`players/${mySlot}/name`]: playerName,
+          [`players/${mySlot}/joined`]: true
+        };
+        const willBeFull = data.players.filter((p, idx) => p.joined || idx === mySlot).length === data.maxPlayers;
+        if (willBeFull) {
+          updates.turnDeadline = Date.now() + TURN_DURATION * 1000;
+          updates.chancesLeft = MAX_CHANCES;
+        }
+        await update(roomRef, updates);
+      }
+
+      document.getElementById("screenName").classList.add("hidden");
+      document.getElementById("screenGame").classList.remove("hidden");
+      document.getElementById("playerDock").classList.remove("hidden");
+      startLocalTimerLoop();
+      listenRoom();
+    };
+
+    function listenRoom() {
+      onValue(ref(db, `salas/${roomId}`), async (snap) => {
+        roomData = snap.val();
+        if (!roomData) return;
+        renderBoardAndHand();
+
+        if (roomData.isSolo && roomData.turn === 1 && !roomData.winner) {
+          setTimeout(playBotTurn, 900);
+        }
+      });
+    }
+
+    function startLocalTimerLoop() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(async () => {
+        if (!roomData || roomData.winner) return;
+        const joinedCount = roomData.players.filter(p => p.joined).length;
+        if (joinedCount < roomData.maxPlayers) {
+          document.getElementById("hudTimer").innerText = `⏱️ ${TURN_DURATION}s`;
+          return;
+        }
+
+        const remainingSec = Math.max(0, Math.ceil((roomData.turnDeadline - Date.now()) / 1000));
+        const timerEl = document.getElementById("hudTimer");
+        timerEl.innerText = `⏱️ ${remainingSec}s`;
+
+        if (remainingSec <= 10) timerEl.classList.add("timer-warn");
+        else timerEl.classList.remove("timer-warn");
+
+        if (remainingSec === 0 && roomData.turn === mySlot) {
+          const currentName = roomData.players[mySlot].name;
+          await passTurnInDb(`⏱️ O tempo de ${currentName} esgotou! Vez passada para o próximo.`);
+        }
+      }, 400);
+    }
+
+    async function passTurnInDb(alertMessage = "") {
+      selectedTileIdx = null;
+      const nextTurn = (roomData.turn + 1) % roomData.maxPlayers;
+      await update(ref(db, `salas/${roomId}`), {
+        turn: nextTurn,
+        chancesLeft: MAX_CHANCES,
+        turnDeadline: Date.now() + TURN_DURATION * 1000,
+        lastAlert: alertMessage
+      });
+    }
+
+    function getSortedRanking(players) {
+      return players
+        .map((p, index) => ({
+          ...p,
+          slot: index,
+          score: p.score || 0,
+          hits: p.hits || 0,
+          errors: p.errors || 0,
+          remaining: (p.hand || []).length
+        }))
+        .filter(p => p.joined)
+        .sort((a, b) => {
+          if (b.score !== a.score) return b.score - a.score;
+          if (a.remaining !== b.remaining) return a.remaining - b.remaining;
+          return a.errors - b.errors;
+        });
+    }
+
+    /**
+     * Renderiza a cadeia do dominó com DOBRA EM L / SERPENTINA
+     * - Peças duplas (leftKey === rightKey) ficam na vertical atravessadas na linha
+     * - Ao atingir a borda direita da mesa, o caminho dobra 90° para baixo na vertical
+     *   e depois segue para a esquerda (serpentina), garantindo que nunca corte peças.
+     */
+    function renderSnakeBoard(board) {
+      const arena = document.getElementById("tableArena");
+      arena.innerHTML = "";
+      if (!board.length) return;
+
+      const arenaWidth = Math.max(arena.clientWidth || 960, 420);
+      const LONG = 132;
+      const SHORT = 62;
+      const GAP = 4;
+
+      let cursorX = 36;
+      let cursorY = 48;
+      let direction = "RIGHT"; // 'RIGHT' | 'DOWN_RIGHT' | 'LEFT' | 'DOWN_LEFT'
+      let verticalSteps = 0;
+      let maxBottom = 260;
+
+      board.forEach((tile) => {
+        const isDouble = tile.leftKey === tile.rightKey;
+        const el = document.createElement("div");
+        el.className = "tile-board";
+
+        let orientation = "horizontal";
+        let topText = tile.leftLabel;
+        let bottomText = tile.rightLabel;
+
+        if (direction === "RIGHT") {
+          if (isDouble) {
+            orientation = "vertical";
+            el.style.left = `${cursorX}px`;
+            el.style.top = `${cursorY - (LONG - SHORT) / 2}px`;
+            cursorX += SHORT + GAP;
+          } else {
+            orientation = "horizontal";
+            el.style.left = `${cursorX}px`;
+            el.style.top = `${cursorY}px`;
+            cursorX += LONG + GAP;
+          }
+
+          // Se chegou perto da borda direita, dobra para baixo!
+          if (cursorX + LONG + SHORT > arenaWidth - 28) {
+            direction = "DOWN_RIGHT";
+            verticalSteps = 0;
+            // Alinha a dobra logo abaixo da última peça horizontal
+            cursorX = cursorX - SHORT - GAP;
+            cursorY = cursorY + SHORT + GAP;
+          }
+        } else if (direction === "DOWN_RIGHT") {
+          orientation = "vertical";
+          el.style.left = `${cursorX}px`;
+          el.style.top = `${cursorY}px`;
+          cursorY += LONG + GAP;
+          verticalSteps++;
+
+          // Após 2 peças descendo na dobra, vira para a esquerda
+          if (verticalSteps >= 2) {
+            direction = "LEFT";
+            cursorX = cursorX - LONG - GAP;
+            cursorY = cursorY - SHORT - GAP;
+          }
+        } else if (direction === "LEFT") {
+          // Na volta para a esquerda, inverte visualmente os lados para o encaixe encostar certo
+          topText = tile.rightLabel;
+          bottomText = tile.leftLabel;
+
+          if (isDouble) {
+            orientation = "vertical";
+            el.style.left = `${cursorX + (LONG - SHORT)}px`;
+            el.style.top = `${cursorY - (LONG - SHORT) / 2}px`;
+            cursorX -= SHORT + GAP;
+          } else {
+            orientation = "horizontal";
+            el.style.left = `${cursorX}px`;
+            el.style.top = `${cursorY}px`;
+            cursorX -= LONG + GAP;
+          }
+
+          // Se chegou perto da borda esquerda, dobra para baixo novamente!
+          if (cursorX < 28) {
+            direction = "DOWN_LEFT";
+            verticalSteps = 0;
+            cursorX = cursorX + LONG + GAP;
+            cursorY = cursorY + SHORT + GAP;
+          }
+        } else if (direction === "DOWN_LEFT") {
+          orientation = "vertical";
+          el.style.left = `${cursorX}px`;
+          el.style.top = `${cursorY}px`;
+          cursorY += LONG + GAP;
+          verticalSteps++;
+
+          if (verticalSteps >= 2) {
+            direction = "RIGHT";
+            cursorX = cursorX + SHORT + GAP;
+            cursorY = cursorY - SHORT - GAP;
+          }
+        }
+
+        el.classList.add(orientation);
+        el.innerHTML = `<div class="half">${topText}</div><div class="half">${bottomText}</div>`;
+        arena.appendChild(el);
+
+        const bottomEdge = parseFloat(el.style.top) + (orientation === "vertical" ? LONG : SHORT) + 36;
+        if (bottomEdge > maxBottom) maxBottom = bottomEdge;
+      });
+
+      arena.style.height = `${Math.max(330, maxBottom)}px`;
+    }
+
+    function renderBoardAndHand() {
+      const { board = [], players = [], turn, maxPlayers, winner, chancesLeft = MAX_CHANCES, lastAlert = "" } = roomData;
+      const joinedCount = players.filter(p => p.joined).length;
+      const currentPlayer = players[turn];
+      const isMyTurn = turn === mySlot && joinedCount === maxPlayers && !winner;
+
+      document.getElementById("hudPlayers").innerText = `Jogadores: ${joinedCount}/${maxPlayers}`;
+      document.getElementById("hudRoom").innerText = `Sala: ${roomId}`;
+      document.getElementById("hudTurn").innerText = joinedCount < maxPlayers
+        ? `Aguardando jogadores (${joinedCount}/${maxPlayers})...`
+        : (isMyTurn ? `🟢 Sua vez, ${players[mySlot].name}!` : `⏳ Vez de ${currentPlayer.name}`);
+
+      const hearts = "❤️".repeat(chancesLeft) + "🖤".repeat(Math.max(0, MAX_CHANCES - chancesLeft));
+      document.getElementById("hudChances").innerText = `Chances: ${hearts}`;
+
+      const rankedPlayers = getSortedRanking(players);
+      const liveBar = document.getElementById("liveRankingBar");
+      liveBar.innerHTML = "";
+      rankedPlayers.forEach((p, pos) => {
+        const medal = pos === 0 ? "🥇" : pos === 1 ? "🥈" : pos === 2 ? "🥉" : `${pos + 1}º`;
+        const chip = document.createElement("div");
+        chip.className = "rank-chip" + (pos === 0 ? " leader" : "");
+        chip.innerText = `${medal} ${p.name}: ${p.score} pts (${p.remaining} peças)`;
+        liveBar.appendChild(chip);
+      });
+
+      const toastEl = document.getElementById("feedbackToast");
+      if (lastAlert) {
+        toastEl.innerText = lastAlert;
+        toastEl.classList.remove("hidden");
+      } else {
+        toastEl.classList.add("hidden");
+      }
+
+      // Renderiza o dominó com dobra
+      renderSnakeBoard(board);
+
+      const myHand = players[mySlot]?.hand || [];
+      const handEl = document.getElementById("handRow");
+      handEl.innerHTML = "";
+      myHand.forEach((tile, idx) => {
+        const div = document.createElement("div");
+        div.className = "tile-hand" + (selectedTileIdx === idx ? " selected" : "");
+        div.innerHTML = `<div class="half">${tile.leftLabel}</div><div class="half">${tile.rightLabel}</div>`;
+        div.onclick = () => {
+          if (!isMyTurn) return;
+          selectedTileIdx = selectedTileIdx === idx ? null : idx;
+          renderBoardAndHand();
+        };
+        handEl.appendChild(div);
+      });
+
+      document.getElementById("btnPlayLeft").disabled = !(isMyTurn && selectedTileIdx !== null);
+      document.getElementById("btnPlayRight").disabled = !(isMyTurn && selectedTileIdx !== null);
+      document.getElementById("btnPassTurn").disabled = !isMyTurn;
+
+      if (winner) {
+        document.getElementById("winnerText").innerText = `🏆 ${winner.toUpperCase()} GANHOU!!!!`;
+        const tbody = document.getElementById("rankingBody");
+        tbody.innerHTML = "";
+
+        rankedPlayers.forEach((p, idx) => {
+          const tr = document.createElement("tr");
+          if (idx === 0) tr.className = "first-place";
+          const medal = idx === 0 ? "🥇 1º" : idx === 1 ? "🥈 2º" : idx === 2 ? "🥉 3º" : `${idx + 1}º`;
+          tr.innerHTML = `
+            <td>${medal}</td>
+            <td>${p.name}</td>
+            <td>${p.score} pts</td>
+            <td>${p.hits}</td>
+            <td>${p.errors}</td>
+            <td>${p.remaining}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+
+        document.getElementById("winnerModal").classList.remove("hidden");
+      }
+    }
+
+    // Recalcula a dobra automaticamente se redimensionar a janela
+    window.addEventListener("resize", () => {
+      if (roomData && roomData.board) renderSnakeBoard(roomData.board);
+    });
+
+    async function executeMove(side) {
+      const board = [...roomData.board];
+      const playerObj = roomData.players[mySlot];
+      const myHand = [...(playerObj.hand || [])];
+      const tile = myHand[selectedTileIdx];
+      if (!tile) return;
+
+      const leftKey = board[0].leftKey;
+      const rightKey = board[board.length - 1].rightKey;
+      let placedTile = null;
+
+      if (side === "left") {
+        if (tile.rightKey === leftKey) {
+          placedTile = tile;
+        } else if (tile.leftKey === leftKey) {
+          placedTile = { leftLabel: tile.rightLabel, leftKey: tile.rightKey, rightLabel: tile.leftLabel, rightKey: tile.leftKey };
+        }
+      } else {
+        if (tile.leftKey === rightKey) {
+          placedTile = tile;
+        } else if (tile.rightKey === rightKey) {
+          placedTile = { leftLabel: tile.rightLabel, leftKey: tile.rightKey, rightLabel: tile.leftLabel, rightKey: tile.leftKey };
+        }
+      }
+
+      if (!placedTile) {
+        const newChances = (roomData.chancesLeft || MAX_CHANCES) - 1;
+        const newErrors = (playerObj.errors || 0) + 1;
+        const newScore = Math.max(0, (playerObj.score || 0) - 20);
+        const playerName = playerObj.name;
+
+        const baseUpdates = {
+          [`players/${mySlot}/errors`]: newErrors,
+          [`players/${mySlot}/score`]: newScore
+        };
+
+        if (newChances <= 0) {
+          selectedTileIdx = null;
+          const nextTurn = (roomData.turn + 1) % roomData.maxPlayers;
+          await update(ref(db, `salas/${roomId}`), {
+            ...baseUpdates,
+            turn: nextTurn,
+            chancesLeft: MAX_CHANCES,
+            turnDeadline: Date.now() + TURN_DURATION * 1000,
+            lastAlert: `❌ ${playerName} usou as 3 chances e errou! Vez passada para o próximo jogador.`
+          });
+        } else {
+          await update(ref(db, `salas/${roomId}`), {
+            ...baseUpdates,
+            chancesLeft: newChances,
+            lastAlert: `⚠️ Encaixe incorreto de ${playerName} (-20 pts)! Restam ${newChances} chance(s).`
+          });
+        }
+        return;
+      }
+
+      if (side === "left") board.unshift(placedTile);
+      else board.push(placedTile);
+
+      myHand.splice(selectedTileIdx, 1);
+      selectedTileIdx = null;
+
+      const remainingSec = Math.max(0, Math.ceil((roomData.turnDeadline - Date.now()) / 1000));
+      const isWin = myHand.length === 0;
+      const earnedPoints = 100 + remainingSec + (isWin ? 200 : 0);
+
+      const nextTurn = (roomData.turn + 1) % roomData.maxPlayers;
+      const winnerName = isWin ? playerObj.name : null;
+
+      await update(ref(db, `salas/${roomId}`), {
+        board,
+        [`players/${mySlot}/hand`]: myHand,
+        [`players/${mySlot}/score`]: (playerObj.score || 0) + earnedPoints,
+        [`players/${mySlot}/hits`]: (playerObj.hits || 0) + 1,
+        turn: nextTurn,
+        chancesLeft: MAX_CHANCES,
+        turnDeadline: Date.now() + TURN_DURATION * 1000,
+        lastAlert: "",
+        winner: winnerName
+      });
+    }
+
+    async function playBotTurn() {
+      const board = [...roomData.board];
+      const botObj = roomData.players[1];
+      const botHand = [...(botObj.hand || [])];
+      const leftKey = board[0].leftKey;
+      const rightKey = board[board.length - 1].rightKey;
+
+      const idxRight = botHand.findIndex(t => t.leftKey === rightKey || t.rightKey === rightKey);
+      const idxLeft = botHand.findIndex(t => t.rightKey === leftKey || t.leftKey === leftKey);
+      let scored = 0;
+      let hit = 0;
+
+      if (idxRight !== -1) {
+        const t = botHand[idxRight];
+        const oriented = t.leftKey === rightKey ? t : { leftLabel: t.rightLabel, leftKey: t.rightKey, rightLabel: t.leftLabel, rightKey: t.leftKey };
+        board.push(oriented);
+        botHand.splice(idxRight, 1);
+        scored = 115;
+        hit = 1;
+      } else if (idxLeft !== -1) {
+        const t = botHand[idxLeft];
+        const oriented = t.rightKey === leftKey ? t : { leftLabel: t.rightLabel, leftKey: t.rightKey, rightLabel: t.leftLabel, rightKey: t.leftKey };
+        board.unshift(oriented);
+        botHand.splice(idxLeft, 1);
+        scored = 115;
+        hit = 1;
+      }
+
+      const isWin = botHand.length === 0;
+      if (isWin) scored += 200;
+
+      await update(ref(db, `salas/${roomId}`), {
+        board,
+        "players/1/hand": botHand,
+        "players/1/score": (botObj.score || 0) + scored,
+        "players/1/hits": (botObj.hits || 0) + hit,
+        turn: 0,
+        chancesLeft: MAX_CHANCES,
+        turnDeadline: Date.now() + TURN_DURATION * 1000,
+        lastAlert: "",
+        winner: isWin ? botObj.name : null
+      });
+    }
+
+    document.getElementById("btnPlayLeft").onclick = () => executeMove("left");
+    document.getElementById("btnPlayRight").onclick = () => executeMove("right");
+    document.getElementById("btnPassTurn").onclick = async () => {
+      const playerName = roomData.players[mySlot].name;
+      await passTurnInDb(`${playerName} passou a vez.`);
+    };
+  </script>
+</body>
+</html>
