@@ -1,2 +1,2 @@
-# DOMINIO-TRIGO
-jogo de dominio sobre trigonometria
+# DOMINÓ-TRIGO
+jogo de dominó sobre trigonometria
